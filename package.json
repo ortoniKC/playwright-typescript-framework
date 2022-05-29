@@ -1,0 +1,17 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript Framework with Playwright Test Runner",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "keywords": [
+    "playwright test runner",
+    "playwright typescript framework"
+  ],
+  "author": "Koushik Chatterjee - LetCode",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.22.2"
+  }
+}
