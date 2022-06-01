@@ -1,34 +1,49 @@
-import { ElementHandle, FrameLocator, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 export default class Wrapper {
 
-    constructor(protected page: Page) {
+    constructor(public page: Page) {
     }
 
-    protected async findLocator(value: string, options?: {
-        frame?: string | undefined;
-        waitForLocator?: boolean | undefined;
-        state?: "visible" | "attached";
-        timeout?: number;
-    }): Promise<ElementHandle<SVGElement | HTMLElement> | Locator> {
-        if (options?.waitForLocator) {
-            return await this.page.waitForSelector(value, {
-                state: options.state,
-                timeout: options.timeout
-            });
+    public async findLocator(value: string, options?: {
+        frame?: string,
+        tabId?: number,
+        timeOut?: number,
+        has?: Locator,
+        hasText?: string
+    }): Promise<Locator> {
+        // improve this window concept
+        if (options?.tabId) {
+            this.page = this.page.context().pages()[options.tabId]
         }
         if (options?.frame) {
-            return this.page.frameLocator(options.frame).locator(value);
+            return this.page.frameLocator(options.frame).locator(value, {
+                has: options?.has,
+                hasText: options?.hasText
+            });
         }
-        return this.page.locator(value);
-    }
-    public switchToWindow(tabId: number) {
-        const pages = this.page.context().pages();
-        console.log('No.of Windows: ' + pages.length);
-        this.page = pages[tabId];
+        return this.page.locator(value, {
+            has: options?.has,
+            hasText: options?.hasText
+        })
+
     }
 
-    public get getUrl() {
+    public getUrl(): string {
         return this.page.url();
     }
+
+    public async closeTab(options?: {
+        tabId?: number
+    }) {
+        if (options?.tabId) {
+            await this.page.context().pages()[options.tabId].close();
+        }
+        else {
+            await this.page.close()
+        }
+
+    }
+
+
 
 }

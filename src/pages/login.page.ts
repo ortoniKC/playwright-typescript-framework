@@ -4,12 +4,13 @@ import Wrapper from "../base/Wrapper";
 export default class LoginPage extends Wrapper {
 
 
-    constructor(protected page: Page) {
+    constructor(public page: Page) {
         super(page);
     }
 
     public async enterUserName(username: string) {
         const user = await this.findLocator("input[name='email']");
+        await user.waitFor({ state: "attached" });
         await user.type(username);
     }
 

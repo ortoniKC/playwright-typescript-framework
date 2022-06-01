@@ -3,7 +3,7 @@ import Wrapper from "../base/Wrapper";
 
 export default class FramePage extends Wrapper {
 
-    constructor(protected page: Page) {
+    constructor(public page: Page) {
         super(page);
     }
 
@@ -16,7 +16,7 @@ export default class FramePage extends Wrapper {
 
     public async enterLastFrame(password: string) {
         const fName = await this.findLocator("input[name='lname']",
-            { frame: "#firstFr", state: "visible" });
+            { frame: "#firstFr" });
         await fName.type(password);
     }
 }

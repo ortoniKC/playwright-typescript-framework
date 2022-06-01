@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import Wrapper from "../base/Wrapper";
 
 export default class WindowPage extends Wrapper {
-    constructor(protected page: Page) {
+    constructor(public page: Page) {
         super(page);
     }
 
