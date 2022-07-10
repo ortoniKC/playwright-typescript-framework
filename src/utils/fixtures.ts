@@ -1,9 +1,9 @@
 import { test as baseTest } from "@playwright/test";
-import FramePage from "../../pages/frame.page";
-import LoginPage from "../../pages/login.page";
-import WindowPage from "../../pages/window.page";
-import WSPage from "../../pages/ws.page";
-import Wrapper from "../Wrapper";
+import FramePage from "../pages/frame.page";
+import LoginPage from "../pages/login.page";
+import WindowPage from "../pages/window.page";
+import WSPage from "../pages/ws.page";
+import Wrapper from "../base/Wrapper";
 
 const test = baseTest.extend<{
     framePage: FramePage;
