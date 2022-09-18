@@ -1,13 +1,15 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  testMatch: ["tests/test.ts"],
-  timeout: 30000,
+  testMatch: ["tests/forms.test.ts"],
+  timeout: 5000,
   reporter: "html",
   use: {
     headless: false,
+    screenshot: "on",
+    video: "on"
   },
-  globalSetup:"src/utils/globalSetup.ts"
+  globalSetup: "src/utils/globalSetup.ts"
 };
 
 export default config;

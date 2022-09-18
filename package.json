@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Playwright TypeScript Framework with Playwright Test Runner",
   "scripts": {
+    "postinstall": "npx playwright install",
     "env:test": "cross-env test_env=test npx playwright test",
     "env:prod": "cross-env test_env=prod npx playwright test",
-    "env:dev": "cross-env test_env=dev npx playwright test"
+    "env:development": "cross-env test_env=development npx playwright test",
+    "test:dev": "cross-env test_env=dev npx playwright test",
+    "test:staging": "cross-env test_env=staging npx playwright test"
   },
   "keywords": [
     "playwright test runner",
@@ -14,8 +17,9 @@
   "author": "Koushik Chatterjee - LetCode",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.22.2",
-    "cross-env": "^7.0.3"
+    "@playwright/test": "^1.25.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1"
   },
   "dependencies": {
     "dotenv": "^16.0.1"
